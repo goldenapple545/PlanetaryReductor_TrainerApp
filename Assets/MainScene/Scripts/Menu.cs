@@ -15,17 +15,13 @@ public class Menu : MonoBehaviour
     [SerializeField] private Transform planetaryGearsTarget;
     [SerializeField] private Transform sunGearTarget;
 
-    private OrbitCamera orbitCamera;
-    private Animator cameraAnimator;
-    
-    private bool axisLook = false;
-    private bool planetaryGearsLook = false;
-    private bool sunGearLook = false;
+    private OrbitCamera _orbitCamera;
+    private Animator _cameraAnimator;
 
     private void Start()
     {
-        orbitCamera = camera.GetComponent<OrbitCamera>();
-        cameraAnimator = camera.GetComponent<Animator>();
+        _orbitCamera = camera.GetComponent<OrbitCamera>();
+        _cameraAnimator = camera.GetComponent<Animator>();
     }
 
     public void MenuExpand()
@@ -38,16 +34,17 @@ public class Menu : MonoBehaviour
     {
         bool switchFlag = modelAnimator.GetBool(animationName);
         switchFlag = !switchFlag;
+        
         modelAnimator.SetBool(animationName, switchFlag);
-        cameraAnimator.SetBool(animationName, switchFlag);
+        _cameraAnimator.SetBool(animationName, switchFlag);
         
         if (switchFlag)
         {
-            orbitCamera.target = target;
+            _orbitCamera.target = target;
         }
         else
         {
-            orbitCamera.target = defaultTarget;
+            _orbitCamera.target = defaultTarget;
             target.localEulerAngles = new Vector3(0, 0 ,0);
         }
     }
