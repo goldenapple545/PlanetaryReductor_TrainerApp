@@ -8,7 +8,7 @@ public class FollowToTarget : MonoBehaviour
     
     void Update()
     {
-        transform.position = target.position;
+        //transform.position = target.position;
         transform.rotation = target.rotation;
     }
 }
